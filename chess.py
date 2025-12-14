@@ -8,7 +8,7 @@ while(On):
         On=False
         break
     notation = tuple(text.split())
-    if(game.is_Legal(notation[0],notation[1])):
+    if(game.is_Legal(notation[0],notation[1]) == True):
         board.Update_board(notation[0], notation[1])
     for lines in board.Board:
         print(lines)

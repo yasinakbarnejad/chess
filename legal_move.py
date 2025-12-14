@@ -1,9 +1,8 @@
 import board
+import pieces as pi
 class pieces:
     def __init__(self) -> None:
         self.piece_keys = {'P' : self.pawn_move, 
-                           'R' : self.rook_move,
-                           'B' : self.bishop_moves,
                            'N' : self.knight_moves,
                            'Q' : self.queen_moves,
                            'K' : self.king_moves}
@@ -25,34 +24,6 @@ class pieces:
         else:
             return "wrong"
         return moves
-    def rook_move(self, position):
-        row, col = position
-        moves =[]
-        i =1
-        while(0<i<9):
-            if(i!=row):
-                moves.append((i, col))
-            i+=1
-        i=1
-        while(0<i<9):
-            if(i==col):
-                i+=1
-                continue
-            moves.append((row, i))
-            i+=1
-        return moves
-    def bishop_moves(self, position):
-        row, col = position
-        moves =[]
-        direction = [(1,1), (1, -1), (-1, 1), (-1, -1)]
-        for dcol, drow in direction:
-            for i in range(1,8):
-                newrow, newcol = row +drow*i , col + dcol*i
-                if(0<newrow<9 and 0<newcol<9):
-                    moves.append((newrow,newcol))
-                else:
-                    break
-        return moves
     def knight_moves(self, position):
         row, col = position
         moves =[]
@@ -70,14 +41,23 @@ class pieces:
              return moves
     def is_Legal(self,pos1, pos2):
         pos1, pos2 = board.Translate(pos1), board.Translate(pos2)
-        piece_kind = board.piece_name(pos1)
         if not(1<=pos1[0]<=8 and 1<=pos1[1]<=8 and 1<= pos2[0]<=8 and 1<=pos2[1]<=8):
-            return "Invalid position"
-        if piece_kind in self.piece_keys:
-            valid_checks = self.get_moves(piece_kind, pos1)
+                return "Invalid position"
+        piece_kind = board.piece_name(pos1)
+        if type(piece_kind) in [pi.Rook, pi.Bishop, pi.Knight]:
+            valid_checks = piece_kind.make_move()
         else:
-            return "Invalid piece"
+            print(type(piece_kind))
+            print(piece_kind, "is", board.piece_name(pos1))
+            if piece_kind in self.piece_keys:
+                valid_checks = self.get_moves(piece_kind, pos1)
+            else:
+                return "Invalid piece"
         if valid_checks!= "wrong":
-            return pos2 in valid_checks
+            if pos2 in valid_checks:
+                piece_kind.move(pos2)
+                return True
+            else:
+                print("problem")
         else:
             return "Invalid position"
