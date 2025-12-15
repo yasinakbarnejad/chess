@@ -1,13 +1,13 @@
 import pieces as pi 
 
-Board = [[pi.Rook("black", (8,1)), pi.Knight("black",(8,2)), pi.Bishop("black",(8,3)), 'Q', 'K', pi.Bishop("black",(8,6)), pi.Knight("black",(8,7)),pi.Rook("black", (8,8))],
-         ['P', 'P', 'P', 'P', 'P', 'P', 'P','P'],
+Board = [[pi.Rook("black", (8,1)), pi.Knight("black",(8,2)), pi.Bishop("black",(8,3)), pi.Queen("black", (8,4)), pi.King("black", (8,5)), pi.Bishop("black",(8,6)), pi.Knight("black",(8,7)),pi.Rook("black", (8,8))],
+         [pi.Pawn("black", (7,1)), pi.Pawn("black", (7,2)), pi.Pawn("black", (7,3)), pi.Pawn("black", (7,4)), pi.Pawn("black", (7,5)), pi.Pawn("black", (7,6)), pi.Pawn("black", (7,7)),pi.Pawn("black", (7,8))],
          [' ', ' ', ' ', ' ', ' ', ' ', ' ',' '],
          [' ', ' ', ' ', ' ', ' ', ' ', ' ',' '],
          [' ', ' ', ' ', ' ', ' ', ' ', ' ',' '],
          [' ', ' ', ' ', ' ', ' ', ' ', ' ',' '],
-         ['P', 'P', 'P', 'P', 'P', 'P', 'P','P'],
-         [pi.Rook("white",(1,1)), pi.Knight("white",(1,2)), pi.Bishop("white",(1,3)), 'Q', 'K', pi.Bishop("white",(1,6)), pi.Knight("white",(1,7)),pi.Rook("white",(1,8))],
+         [pi.Pawn("white", (2,1)), pi.Pawn("white", (2,2)), pi.Pawn("white", (2,3)), pi.Pawn("white", (2,4)), pi.Pawn("white", (2,5)), pi.Pawn("white", (2,6)), pi.Pawn("white", (2,7)),pi.Pawn("white", (2,8))],
+         [pi.Rook("white",(1,1)), pi.Knight("white",(1,2)), pi.Bishop("white",(1,3)), pi.Queen("white", (1,4)), pi.King("black", (1,5)), pi.Bishop("white",(1,6)), pi.Knight("white",(1,7)),pi.Rook("white",(1,8))],
          ]
 numberize = {'a':1, 'b':2, 'c':3, 'd':4, 'e':5, 'f':6, 'g':7, 'h':8}
 def Translate(text:str):
